@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{% load static %}
+  <head>
+    <meta charset="utf-8">
+    <title>Weather App</title>
+
+    <style>
+        .card {
+            margin: 20px;
+            box-shadow: 5px;
+            border-color: #475;
+        
+        }
+        body{
+            background: #475;
+        }
+        h2{
+            text-emphasis-color: blue;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/weather_app.css' %}">
+  </head>
+
+<!--              body                -->
+  <body>
+    <div class="container-fluid">
+      <div class="jumbotron" style="background-color: purple";>
+        <h1 style="color: white; font-style: courier;">WEATHER APP</h1>
+      </div>
+    </div>
+
+
+  <div class="container">
+    <div class="row justify-content-center">
+          <div class="col-md-4">
+            <h2> What's the weather like </h2>
+            <form method="POST" class="Post-Form">
+              {% csrf_token %}
+              {{ form.name }}
+              <div class="button-control" style="color:blueviolet">
+              <button  type="submit" class="btn btn-info btn-sm" >Add city</button>
+            </div>
+          </form><br>
+          </div>
+        </div>
+
+    <div class="container">
+      <div class="row">
+   
+            {% for city_weather in weather_data %}
+
+            <div class="card" style="width: 20rem" >
+                
+                
+    <div class="col-md-4">
+      <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="media">
+         <div class="media-left">
+            <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image" class="media-object" style="width:60px">
+          </div>
+         <div class="media-body">
+           <p>
+            <p class="title">{{ city_weather.city }}</p>
+            <p class="subtitle">{{ city_weather.temperature }}° C</p>
+            <br> {{ city_weather.description }}
+        
+        </p>
+
+
+      
+
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+    {% endfor %}
+    </div>
+  </div>
+  </div>
+</div>
+
+<!--footer-->
+  <footer class="page-footer font-small blue fixed-bottom"  style="background-color: white";>
+    <div class="footer-copyright text-center py-3">
+    <h5 >  © 2019 Copyright:  Designed by Naveen Kumar Sharma </h5>
+    </div>
+  </footer>
+<!--footer-->
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
